@@ -148,21 +148,21 @@ ConjugateGradient <- function(A = NULL, b = NULL, x0 = NULL, max_iter = 100, sig
 
 
 
-### This is a test data
-T_m <- matrix(c(1, 2, 1, 3, 5, 9, 2, 4, 1, 0, 5, 1), nrow=4)
-A <- t(T_m) %*% T_m   # make sure A is symmetric and positive-definite
-b <- c(2, 2 ,2)
-x0 <- c(5, 5, 5)
-
-solve(A) %*% b
-
-SteepDescent(A, b, x0)
-system.time(SteepDescent(A, b, x0))
-## 42 iterations needed.
-
-ConjugateGradient(A, b, x0)
-system.time(ConjugateGradient(A, b, x0))
-## Only 3 iterations needed!! Super fast. 
+##   ### This is a test data
+##   T_m <- matrix(c(1, 2, 1, 3, 5, 9, 2, 4, 1, 0, 5, 1), nrow=4)
+##   A <- t(T_m) %*% T_m   # make sure A is symmetric and positive-definite
+##   b <- c(2, 2 ,2)
+##   x0 <- c(5, 5, 5)
+##   
+##   solve(A) %*% b
+##   
+##   SteepDescent(A, b, x0)
+##   system.time(SteepDescent(A, b, x0))
+##   ## 42 iterations needed.
+##   
+##   ConjugateGradient(A, b, x0)
+##   system.time(ConjugateGradient(A, b, x0))
+##   ## Only 3 iterations needed!! Super fast. 
 
 
 

@@ -9,8 +9,8 @@
 #' 
 
 setwd("~/Documents/GitHub/Conjugate_Gradient_Method")
-raw_geno <- read.table(file="chr_19.snps", head=T, stringsAsFactors = F, na.strings = "N")  # the ACTG genotype with SNPid, strain names, etc
-geno2 <- read.table(file="chr_19.emma", head=F, stringsAsFactors = F)   # the 0, 1, 2 format genotype 
+raw_geno <- read.table(file="raw_genotype_Mouse_HapMap/chr_19.snps", head=T, stringsAsFactors = F, na.strings = "N")  # the ACTG genotype with SNPid, strain names, etc
+geno2 <- read.table(file="raw_genotype_Mouse_HapMap/chr_19.emma", head=F, stringsAsFactors = F)   # the 0, 1, 2 format genotype 
 
 ## the raw genotype contains 3247 SNPs and 251 indi
 
@@ -91,9 +91,9 @@ pheno$FID <- as.character(pheno$FID)
 pheno$pheno <- as.numeric(as.character(pheno$pheno))
 pheno$genetic_value <- as.numeric(as.character(pheno$genetic_value))
 
-write.table(pheno, file="simulated_phenotype.pheno", quote=F, row.names = F, sep="\t")
+write.table(pheno, file="clean_geno_pheno/simulated_phenotype.pheno", quote=F, row.names = F, sep="\t")
 
-write.table(geno2_clean, file="clean_genotype.geno", quote=F, row.names = F, sep="\t")
+write.table(geno2_clean, file="clean_geno_pheno/clean_genotype.geno", quote=F, row.names = T, sep="\t")
 
 
 
