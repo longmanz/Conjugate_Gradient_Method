@@ -18,9 +18,10 @@ For evaluation, we downloaded a public available data from Mouse HapMap project 
 We used the above clean genotype data to generate a simulated additive phenotype, with h2 = 0.6 and num of causal variants/SNPs = 50. 
 
 
-### todo
+### REML
+To run BLUP, we will need to have a pre-knowledge of the Vg/h2 of the phenotypes, which is unknown in our case (as in most cases). Thus, we adopted the GREML method from GCTA (URL: http://cnsgenomics.com/software/gcta/#Overview). The codes are stored in REML_for_Blup.R. 
 
 
 
--P.S. The reason why I play around it is that BOLT-LMM applied this method in its MCMC REML algorithm, and it only requires ~5 iteration to solve the Mixed model equation  V-1 * y = x. 
+-P.S. The reason why I play around it is that BOLT-LMM (URL: https://data.broadinstitute.org/alkesgroup/BOLT-LMM/) applied this method in its MCMC REML algorithm, and it only requires ~5 iteration to solve the Mixed model equation  V-1 * y = x. 
 
