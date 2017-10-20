@@ -5,6 +5,8 @@
 
 setwd("~/Documents/GitHub/Conjugate_Gradient_Method/")
 source(file = "Conjugate_Gradient_Method.R")
+source(file = "REML_for_Blup.R")
+
 
 # load the geno and pheno data
 geno <- read.table(file = "clean_geno_pheno/clean_genotype.geno", head=T, stringsAsFactors = F)
