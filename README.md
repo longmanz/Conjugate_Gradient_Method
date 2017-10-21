@@ -21,7 +21,16 @@ We used the above clean genotype data to generate a simulated additive phenotype
 ### REML
 To run BLUP, we will need to have a pre-knowledge of the Vg/h2 of the phenotypes, which is unknown in our case (as in most cases). Thus, we adopted the GREML method from GCTA (URL: http://cnsgenomics.com/software/gcta/#Overview). The codes are stored in REML_for_Blup.R. 
 
+### CG-BLUP
+BLUP is just calculated from the ordinary Mixed Model Equation : (Xt\*\X + I\*\lambda)*beta = Xty. Here we can see that (Xt\*\X + I\*\lambda) is a positive-definite symmetric matrix, beta is the effect size vector for all SNPs, and Xty is just a multiplier of geno matrix and pheno vector. 
+This is exactly the formula that CG method can solve: Ax = b.
 
+### Testing
+We used the downloaded genotype and simulated phenotype data (see above) to test the CG-BLUP in a 5-k cross-validation scheme. The results look promising. 
+On average, the predicted r_square of the genetic value from BLUP estimates is ~ 0.5. Given this is a pheno with h2~0.6, it is pretty good. 
+
+### To-do
+Larger dataset? Efficiency?
 
 -P.S. The reason why I play around it is that BOLT-LMM (URL: https://data.broadinstitute.org/alkesgroup/BOLT-LMM/) applied this method in its MCMC REML algorithm, and it only requires ~5 iteration to solve the Mixed model equation  V-1 * y = x. 
 

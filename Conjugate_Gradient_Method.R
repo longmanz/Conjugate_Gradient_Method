@@ -7,12 +7,12 @@
 
 
 # install.packages("matrixcalc")
-library(Matrix)
-library(matrixcalc)
+require(Matrix)
+require(matrixcalc)
 
 #' A.  Steepest Descent 
 
-SteepDescent <- function(A = NULL, b = NULL, x0 = NULL, max_iter = 100, sig_thres = 1e-5){
+SteepDescent <- function(A = NULL, b = NULL, x0 = NULL, iter_num = 100, sig_thres = 1e-5){
   
   ##  required packages
   require(Matrix)       # func is.symmetric.matrix()
@@ -43,7 +43,7 @@ SteepDescent <- function(A = NULL, b = NULL, x0 = NULL, max_iter = 100, sig_thre
   
   
   # iteration
-  for(i in 1:max_iter){
+  for(i in 1:iter_num){
     q <- A %*% r_old
     residual <- sum(r_old*r_old)
     alpha <- residual/as.numeric(t(r_old) %*% q)
@@ -65,8 +65,8 @@ SteepDescent <- function(A = NULL, b = NULL, x0 = NULL, max_iter = 100, sig_thre
     }
   }
   
-  if(i == max_iter & residual > sig_thres^2 * residual_origin){
-    message(paste("Within the", max_iter, "iteration time, the results did not converge to the sig threshold", sig_thres, "!"))
+  if(i == iter_num & residual > sig_thres^2 * residual_origin){
+    message(paste("Within the", iter_num, "iteration time, the results did not converge to the sig threshold", sig_thres, "!"))
   }
   cat(paste("the iteration number is", i, "!\n"))
   return(x_old)
@@ -75,7 +75,7 @@ SteepDescent <- function(A = NULL, b = NULL, x0 = NULL, max_iter = 100, sig_thre
 
 
 
-ConjugateGradient <- function(A = NULL, b = NULL, x0 = NULL, max_iter = 100, sig_thres = 1e-5){
+ConjugateGradient <- function(A = NULL, b = NULL, x0 = NULL, iter_num = 100, sig_thres = 1e-5){
   ##  required packages
   require(Matrix)       # func is.symmetric.matrix()
   require(matrixcalc)   # func is.positive.definite()
@@ -107,7 +107,7 @@ ConjugateGradient <- function(A = NULL, b = NULL, x0 = NULL, max_iter = 100, sig
   residual_old <- residual_origin
   
   ## iteration
-  for(i in 1:max_iter){
+  for(i in 1:iter_num){
     q <- A %*% d
     alpha <- residual_old/as.numeric(t(d) %*% q)
     
@@ -135,8 +135,8 @@ ConjugateGradient <- function(A = NULL, b = NULL, x0 = NULL, max_iter = 100, sig
   }
   
   
-  if(i == max_iter & residual_old > sig_thres^2 * residual_origin){
-    message(paste("Within the", max_iter, "iteration time, the results did not converge to the sig threshold", sig_thres, "!"))
+  if(i == iter_num & residual_old > sig_thres^2 * residual_origin){
+    message(paste("Within the", iter_num, "iteration time, the results did not converge to the sig threshold", sig_thres, "!"))
   }
   cat(paste("the iteration number is", i, "!\n"))
   return(x_old)

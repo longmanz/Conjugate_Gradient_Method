@@ -87,12 +87,18 @@ reml <- function(grm, y, sigma_g=0.95, sigma_e=0.05, iter_num=100, sig_thres = 1
             theta <- pmax(1e-3, theta2)
             cat(paste("iteration", i, ": sigma_g =", theta[1], "sigma_e =", theta[2], "\n"))
             
+            if(i == iter_num){
+                log_value <- -0.5*(log(det(V)) + log(det(XtViX)) + ytP %*% y)
+            }
+            
             rm(theta2, V, V_i, XtViX_i, P)
             rm(ytP, Py, AP)
             rm( ytPAPAy, ytPAPPy, ytPPAPy, ytPPPy )
             rm(AI, element_1, element_2, score)
         }
     }
+    
+    
     
     # Likelihood ratio test:
     chisq_val <- abs(log_value - log_value_0)*2
@@ -102,5 +108,5 @@ reml <- function(grm, y, sigma_g=0.95, sigma_e=0.05, iter_num=100, sig_thres = 1
     # theta
 }
 
-reml(grm, pheno, sig_thres = 1e-5)
+# reml(grm, pheno, sig_thres = 1e-5)
 
